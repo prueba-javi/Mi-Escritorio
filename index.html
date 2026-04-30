@@ -3,62 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Escritorio de Bolsillo</title>
+    <title>Mi Escritorio Privado</title>
     <style>
+        :root { --accent: #00d2ff; }
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; font-family: 'Inter', sans-serif;
+            background: #0f172a; color: white;
+            display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden;
         }
-        .desktop {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 25px;
-            width: 80%;
-            max-width: 900px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        /* Pantalla de Bloqueo */
+        #lock-screen {
+            text-align: center; z-index: 100; transition: 0.5s;
         }
-        .icon {
-            text-align: center;
-            color: white;
-            text-decoration: none;
-            transition: transform 0.2s;
+        input {
+            padding: 12px; border-radius: 10px; border: none; outline: none;
+            background: rgba(255,255,255,0.1); color: white; text-align: center; font-size: 1.1rem;
         }
-        .icon:hover { transform: scale(1.1); }
-        .icon img {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 15px;
-            padding: 10px;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        /* El Escritorio */
+        #desktop {
+            display: none; width: 90%; max-width: 1000px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 30px;
         }
-        h1 { position: absolute; top: 20px; color: white; font-weight: 300; letter-spacing: 2px; }
+        .app {
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; color: white; transition: 0.3s;
+        }
+        .app:hover { transform: translateY(-5px); filter: drop-shadow(0 0 10px var(--accent)); }
+        .app img { width: 64px; height: 64px; border-radius: 16px; margin-bottom: 10px; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
-    <h1>MI ESPACIO DIGITAL</h1>
-    <div class="desktop">
-        <!-- Ejemplo de un icono -->
-        <a href="https://google.com" class="icon">
-            <img src="https://www.google.com/favicon.ico" alt="Google">
-            <div>Buscador</div>
+
+    <!-- PANTALLA DE ACCESO -->
+    <div id="lock-screen">
+        <h2 id="msg">Introduce tu Clave</h2>
+        <input type="password" id="pass" placeholder="••••" onkeypress="checkPass(event)">
+    </div>
+
+    <!-- ESCRITORIO -->
+    <div id="desktop">
+        <!-- AÑADE TUS APPS AQUÍ -->
+        <a href="https://google.com" target="_blank" class="app">
+            <img src="https://www.google.com/favicon.ico">
+            <span>Buscador</span>
         </a>
-        <!-- Añade aquí todos tus enlaces -->
-        <a href="https://github.com" class="icon">
-            <img src="https://github.com/favicon.ico" alt="GitHub">
-            <div>Mi Código</div>
+       
+        <a href="URL_DE_LA_WEB" target="_blank" class="app">
+    <img src="https://gemini.google.com/app?utm_source=app_launcher&utm_medium=owned&utm_campaign=base_all">
+    <span>IA</span>
+</a>
+        <a href="https://github.com" target="_blank" class="app">
+            <img src="https://github.com/favicon.ico">
+            <span>GitHub</span>
+        </a>
+
+        <a href="https://youtube.com" target="_blank" class="app">
+            <img src="https://www.youtube.com/favicon.ico">
+            <span>YouTube</span>
         </a>
     </div>
+
+    <script>
+        // CAMBIA "1234" POR TU CONTRASEÑA REAL
+        const CLAVE_CORRECTA = "prueba1"; 
+
+        function checkPass(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('pass').value;
+                if (input === CLAVE_CORRECTA) {
+                    document.getElementById('lock-screen').classList.add('hidden');
+                    document.getElementById('desktop').style.display = 'grid';
+                } else {
+                    document.getElementById('msg').innerText = "❌ Incorrecto";
+                    document.getElementById('pass').value = "";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

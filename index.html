@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Escritorio de Bolsillo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .desktop {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 25px;
+            width: 80%;
+            max-width: 900px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .icon {
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .icon:hover { transform: scale(1.1); }
+        .icon img {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        h1 { position: absolute; top: 20px; color: white; font-weight: 300; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <h1>MI ESPACIO DIGITAL</h1>
+    <div class="desktop">
+        <!-- Ejemplo de un icono -->
+        <a href="https://google.com" class="icon">
+            <img src="https://www.google.com/favicon.ico" alt="Google">
+            <div>Buscador</div>
+        </a>
+        <!-- Añade aquí todos tus enlaces -->
+        <a href="https://github.com" class="icon">
+            <img src="https://github.com/favicon.ico" alt="GitHub">
+            <div>Mi Código</div>
+        </a>
+    </div>
+</body>
+</html>
